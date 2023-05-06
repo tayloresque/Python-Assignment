@@ -11,7 +11,10 @@ max_decrease = {"date": "", "amount": 0}
 change_total = 0
 
 #path to collect data 
-budget_file_path = os.path.join('.','Resources','budget_data.csv')
+budget_file_path = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    'Resources',
+    'budget_data.csv')
 
 #open and read file
 with open(budget_file_path, 'r') as budget_csv: 

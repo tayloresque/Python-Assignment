@@ -9,7 +9,10 @@ candidate_options = []
 candidate_votes = {}
 
 #path to collect data
-election_file_path = os.path.join('.','Resources','election_data.csv')
+election_file_path = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    'Resources',
+    'election_data.csv')
 
 #open and read file
 with open (election_file_path, 'r') as election_csv:
