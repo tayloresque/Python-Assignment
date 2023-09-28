@@ -44,17 +44,18 @@ with open (election_file_path, 'r') as election_csv:
     candidate_percentage = {key: round(val / total_votes * 100,3) for key, val in candidate_votes.items()} 
     winning_candidate = max(candidate_votes, key=candidate_votes.get)            
 
-print("Election Results")
-print("---------------------------")
-print(f"Total Votes: {total_votes}")
-print("---------------------------")
+# Export as a text file
+output_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'PyPoll_Results.txt')
 
-for k,v in candidate_votes.items():
-    print(f'{k}: {candidate_percentage[k]}% ({v})')
-print("---------------------------")
-print(f"Winner:{winning_candidate}")
-print("---------------------------")
+with open(output_file_path, "w+") as f:
+    f.write("Election Results\n")
+    f.write("---------------------------\n")
+    f.write(f"Total Votes: {total_votes}\n")
+    f.write("---------------------------\n")
 
-#export as text file 
-with open("PyPoll_Results.txt", "w+") as f:
-    f.write('Create a new text file')
+    for k, v in candidate_votes.items():
+        f.write(f'{k}: {candidate_percentage[k]}% ({v})\n')
+    
+    f.write("---------------------------\n")
+    f.write(f"Winner: {winning_candidate}\n")
+    f.write("---------------------------\n")

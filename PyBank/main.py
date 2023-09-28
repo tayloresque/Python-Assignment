@@ -56,18 +56,16 @@ with open(budget_file_path, 'r') as budget_csv:
 pl = 0
 for n in profit_loss_change:
     pl += 1
-        
-# print results
-print("Financial Analysis")
-print("--------------------------------")
-print("Total Months:", total_months) 
-print(f"Total Profit Losses: ${total_profit_losses}")   
-print("Average Change:", round(change_total/ pl, 2))
-print(f"Greatest Increase in Profits: {max_increase['date']} (${max_increase['amount']})")
-print(f"Greatest Decrease in Profits: {max_decrease['date']} (${max_decrease['amount']})")
 
-#export as text file -- not sure if this is working, might need to loop through each line
-with open("PyBank_Results.txt", "w+") as f:
-    f.write('Create a new text file')
+# Export as a text file
+output_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'PyBank_Results.txt')
 
+with open(output_file_path, "w+") as f:
+    f.write("Financial Analysis\n")
+    f.write("--------------------------------\n")
+    f.write("Total Months: " + str(total_months) + "\n")
+    f.write("Total Profit Losses: $" + str(total_profit_losses) + "\n")
+    f.write("Average Change: $" + str(round(change_total / pl, 2)) + "\n")
+    f.write("Greatest Increase in Profits: " + max_increase["date"] + " ($" + str(max_increase["amount"]) + ")\n")
+    f.write("Greatest Decrease in Profits: " + max_decrease["date"] + " ($" + str(max_decrease["amount"]) + ")\n")
     
